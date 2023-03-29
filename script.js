@@ -51,11 +51,24 @@ function displayBooks() {
   library.textContent = null;
   myLibrary.forEach((book) => {
     const spot = document.createElement('div');
+    const readBook = document.createElement('input');
+    readBook.type = 'checkbox';
+    readBook.setAttribute('id', 'read-book');
+    const checkLabel = document.createElement('label');
+    checkLabel.setAttribute('for', 'read-book');
+    checkLabel.textContent = 'Have you read this book?';
+    if (book.read) {
+      readBook.checked = true;
+    }
+    readBook.addEventListener('change', () => {
+      book.read = !book.read; // this isn't working right
+      displayBooks();
+    });
     const removeButton = document.createElement('button');
     removeButton.classList.add('remove');
     removeButton.textContent = 'Remove book from library';
     removeButton.addEventListener('click', () => {
-      // should remove corresponding spot from DOM and book from library
+      removeBook(book);
     });
     const eBook = document.createElement('p');
     spot.classList.add('book');
@@ -64,6 +77,8 @@ function displayBooks() {
     eBook.classList.add(label);
     eBook.textContent = book.info();
     spot.appendChild(eBook);
+    spot.appendChild(checkLabel);
+    spot.appendChild(readBook);
     spot.appendChild(removeButton);
     library.appendChild(spot);
   });
@@ -86,7 +101,7 @@ const oneHundredYearsOfSolitude = new Book(
   'One Hundred Years Of Solitude',
   'Gabriel Garcia Marquez',
   448,
-  false
+  true
 );
 
 addBookToLibrary(theHobbit);
