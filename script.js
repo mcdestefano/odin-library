@@ -43,6 +43,10 @@ function Book(title, author, pages, read) {
   };
 }
 
+Book.prototype.changeReadStatus = function () {
+  this.read = !this.read;
+};
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -61,7 +65,7 @@ function displayBooks() {
       readBook.checked = true;
     }
     readBook.addEventListener('change', () => {
-      book.read = !book.read; // this isn't working right
+      book.changeReadStatus();
       displayBooks();
     });
     const removeButton = document.createElement('button');
