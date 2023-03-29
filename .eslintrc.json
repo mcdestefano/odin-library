@@ -12,6 +12,7 @@
     },
     "rules": {
         "no-unused-vars": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+        "semi": "off"
     }
 }
