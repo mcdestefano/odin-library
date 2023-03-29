@@ -36,7 +36,7 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
   this.info = function () {
-    if (read) {
+    if (this.read) {
       return `${title} by ${author}, ${pages} pages, read.`;
     }
     return `${title} by ${author}, ${pages} pages, not read yet.`;
